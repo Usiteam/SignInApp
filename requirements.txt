@@ -19,7 +19,6 @@ openpyxl==2.4.7
 pip-tools==1.9.0
 psutil==3.4.2
 psycopg2==2.7.1
-pycrypto==2.6.1
 pydot==1.0.2
 python-dateutil==2.4.2
 pytz==2015.7
