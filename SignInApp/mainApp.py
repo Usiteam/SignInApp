@@ -3,7 +3,7 @@ import sys, os, operator
 from datetime import datetime
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy 
-from models import Member
+from SignInApp.models import Member
 from SignInApp import db, app
 import requests
 import time
