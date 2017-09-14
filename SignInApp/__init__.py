@@ -18,6 +18,3 @@ db = SQLAlchemy(app)
 app.config.update(
 	DEBUG=True
 	)
-
-import models
-import mainApp
