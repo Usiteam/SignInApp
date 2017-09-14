@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% from "form_macros.html" import render_field %}
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>USIT Sign-In</title>
+		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    	<link rel="icon" href="http://static1.squarespace.com/static/55329952e4b07fb5e0470317/t/59b5bebb8419c20a25da60fc/1505087726265/?format=1500w">
+
+        <link rel="stylesheet" href="../static/css/style.css">
+        <link rel="stylesheet" href="../static/css/main.css">
+        <link rel="stylesheet" href="../static/css/normalize.css">
+
+	</head>
+
+	<body>
+		<div class="usit-icon">
+			<img src="https://static1.squarespace.com/static/55329952e4b07fb5e0470317/t/59b5cf333e00be04abb4de5f/1505087289666/?format=1000w" width="250px" height="250px">
+		</div>
+
+		{% if allowedIn %}
+			<div class="attendance-result">
+				<p>Thanks for checking in! Please take a seat inside!</p>
+				<a href="/">Return to Sign-In</a>
+			</div>
+		{% endif %}
+
+		{% if notAllowedIn %}
+			<div class="attendance-result">
+				<p>Sorry, but you have already used up your two free meetings. Please pay USIT dues online at texasusit.org!</p>
+				<a href="/">Return to Sign-In</a>
+			</div>
+		{% endif %}
+
+		{% if allowedIn or notAllowedIn %}
+			<div class="attendance-stats">
+				<p class="attendance-stat">Name: {{firstName}} {{lastName}} </p>
+				<p class="attendance-stat">General Meetings Attended: {{attendance}}</p>
+				<p class="attendance-stat">Dues Paid: ${{dues}}</p>
+			</div>
+		{% endif %}
+
+		{% if notInSystem %}
+			<div class="eid-prompt">
+				<p>Looks like you're not in the system. Please fill out the information below:</p>
+			</div>
+
+			<form action="/new-member" method="post" class="info-inputs">
+				<input class="info-input" type="text" name="eid" value="{{eid}}" placeholder="EID"><br>
+				<input class="info-input" type="text" name="first-name" placeholder="First Name"><br>
+				<input class="info-input" type="text" name="last-name" placeholder = "Last Name"><br>
+				<input class="info-input" type="text" name="email" placeholder = "Email"><br>
+				<input class="eid-submit" type="submit" name="enter-info" value="Submit Info">
+			</form>
+		{% endif %}
+
+		{% if missingInformation %}
+			<div class="eid-prompt">
+				<p>Looks like we're missing some of your information. Please fill out the information below:</p>
+			</div>
+
+			<form action="/more-info" method="post" class="info-inputs">
+				<input class="info-input" type="text" name="eid" value="{{eid}}" placeholder="EID"><br>
+				{% if needFirstName %}
+					<input class="info-input" type="text" name="first-name" placeholder="First Name"><br>
+				{% endif %}
+				{% if needLastName %}
+					<input class="info-input" type="text" name="last-name" placeholder = "Last Name"><br>
+				{% endif %}
+				{% if needEmail %}
+					<input class="info-input" type="text" name="email" placeholder = "Email"><br>
+				{% endif %}
+				<input class="eid-submit" type="submit" name="enter-info" value="Submit Info">
+			</form>
+		{% endif %}
+
+	</body>
+</html>
