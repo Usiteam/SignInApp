@@ -57,10 +57,10 @@ def get_from_sheet():
 
 @manager.command
 def reset_attendance():
-	eid = str(raw_input("EID: "))
+	eid = str(input("EID: "))
 	member = Member.get_by_eid(eid)
 	if not member is None:
-		meetings_attended = int(raw_input("How many meetings do you want to reset it to? "))
+		meetings_attended = int(input("How many meetings do you want to reset it to? "))
 		member.attendance = meetings_attended
 		member.atLatestMeeting = False
 		db.session.commit()
@@ -70,7 +70,7 @@ def write_to_sheet():
 	row_index = 2
 	end_index = 1000
 
-	column = int(raw_input("What is the column for attendance? "))
+	column = int(input("What is the column for attendance? "))
 
 	for member in Member.query.filter_by(atLatestMeeting = True):
 		if member.rowOnSheet != 0:
