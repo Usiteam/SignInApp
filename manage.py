@@ -44,7 +44,7 @@ def get_from_sheet():
 				firstName = str(sheet.cell(index, 1).value).title()
 				lastName = str(sheet.cell(index, 2).value).title()
 				email = str(sheet.cell(index, 4).value).lower()
-				attendance = int(sheet.cell(index, 11).value)
+				# attendance = int(sheet.cell(index, 11).value)
 				if sheet.cell(index, 8).value:
 					dues = int(sheet.cell(index, 8).value)
 				else:

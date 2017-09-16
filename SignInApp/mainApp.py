@@ -14,6 +14,7 @@ from sqlalchemy import func
 import ntpath
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+date = time.strftime("%m/%d/%Y")
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -34,9 +35,9 @@ def index():
 				needLastName = not member.lastName
 				return render_template('dashboard.html', eid = eid, needEmail = needEmail, needFirstName = needFirstName, needLastName = needLastName, missingInformation = True, notInSystem = False, allowedIn = False, notAllowedIn = False)
 
-			return render_template('dashboard.html', missingInformation = False, notInSystem = False, allowedIn = True, notAllowedIn = False, attendance = member.attendance, dues = member.dues, firstName = member.firstName, lastName = member.lastName)
+			return render_template('dashboard.html', missingInformation = False, notInSystem = False, allowedIn = True, notAllowedIn = False, attendance = member.attendance, dues = member.dues, firstName = member.firstName, lastName = member.lastName, date = date)
 		elif member is not None and not member.check_attendance(member.dues, member.attendance + 1):
-			return render_template('dashboard.html', missingInformation = False, notInSystem = False, allowedIn = False, notAllowedIn = True, attendance = member.attendance, dues = member.dues, firstName = member.firstName, lastName = member.lastName)
+			return render_template('dashboard.html', missingInformation = False, notInSystem = False, allowedIn = False, notAllowedIn = True, attendance = member.attendance, dues = member.dues, firstName = member.firstName, lastName = member.lastName, date = date)
 	return render_template('index.html')
 
 @app.route('/new-member', methods=['POST'])
@@ -49,7 +50,7 @@ def new_user():
 		member = Member(eid = eid, firstName = firstName, lastName = lastName, email = email, attendance=1, dues=0, atLatestMeeting = True, rowOnSheet = 0)
 		db.session.add(member)
 		db.session.commit()
-		return render_template('dashboard.html', notInSystem = False, allowedIn = True, notAllowedIn = False, missingInformation = False, attendance = member.attendance, dues = member.dues, firstName = member.firstName, lastName = member.lastName)
+		return render_template('dashboard.html', notInSystem = False, allowedIn = True, notAllowedIn = False, missingInformation = False, attendance = member.attendance, dues = member.dues, firstName = member.firstName, lastName = member.lastName, date = date)
 
 @app.route('/more-info', methods=['POST'])
 def add_info():
@@ -66,4 +67,4 @@ def add_info():
 
 		db.session.commit()
 
-		return render_template('dashboard.html', notInSystem = False, allowedIn = True, notAllowedIn = False, missingInformation = False, attendance = member.attendance, dues = member.dues, firstName = member.firstName, lastName = member.lastName)
+		return render_template('dashboard.html', notInSystem = False, allowedIn = True, notAllowedIn = False, missingInformation = False, attendance = member.attendance, dues = member.dues, firstName = member.firstName, lastName = member.lastName, date = date)
