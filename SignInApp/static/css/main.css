@@ -7,6 +7,8 @@
 .eid-prompt {
 	display: flex;
 	justify-content: center;
+	padding-left: 30px;
+	padding-right: 30px;
 	margin-top: -20px;
 	color: white;
 	font-size: 30px;
@@ -39,6 +41,7 @@
 .eid-submit {
 	max-width: 250px;
 	border: 0px;
+	min-height: 50px;
 	font-size: 20px;
 }
 
