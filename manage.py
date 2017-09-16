@@ -31,9 +31,9 @@ def get_from_sheet():
 				member.firstName = str(sheet.cell(index, 1).value).title()
 				member.lastName = str(sheet.cell(index, 2).value).title()
 				member.email = str(sheet.cell(index, 4).value).lower()
-				member.attendance = int(sheet.cell(index, 11).value)
-				if sheet.cell(index, 6).value:
-					member.dues = int(sheet.cell(index, 6).value)
+				# member.attendance = int(sheet.cell(index, 11).value)
+				if sheet.cell(index, 8).value:
+					member.dues = int(sheet.cell(index, 8).value)
 				else:
 					member.dues = 0
 				member.rowOnSheet = index
@@ -45,8 +45,8 @@ def get_from_sheet():
 				lastName = str(sheet.cell(index, 2).value).title()
 				email = str(sheet.cell(index, 4).value).lower()
 				attendance = int(sheet.cell(index, 11).value)
-				if sheet.cell(index, 6).value:
-					dues = int(sheet.cell(index, 6).value)
+				if sheet.cell(index, 8).value:
+					dues = int(sheet.cell(index, 8).value)
 				else:
 					dues = 0
 				rowOnSheet = index
