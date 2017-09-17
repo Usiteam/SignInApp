@@ -66,6 +66,17 @@ def reset_attendance():
 		db.session.commit()
 
 @manager.command
+def get_info():
+	eid = str(input("EID: "))
+	member = Member.get_by_eid(eid)
+	if not member is None:
+		print("Name: " + str(member.firstName) + " " + str(member.lastName))
+		print("EID: " + str(member.eid))
+		print("Email: " + str(member.email))
+		print("Meetings Attended: " + str(member.attendance))
+		print("Dues: $" + str(member.dues))
+
+@manager.command
 def write_to_sheet():
 	row_index = 2
 	end_index = 1000
