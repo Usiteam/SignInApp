@@ -36,6 +36,18 @@ def get_from_sheet():
 					member.dues = int(sheet.cell(index, 8).value)
 				else:
 					member.dues = 0
+				if sheet.cell(index, 9).value:
+					member.attendance = int(sheet.cell(index, 9).value)
+				else:
+					member.attendance = 0
+				if sheet.cell(index, 5).value:
+					member.year = str(sheet.cell(index, 5).value)
+				else:
+					member.year = ""
+				if sheet.cell(index, 7).value:
+					member.comments = str(sheet.cell(index, 7).value)
+				else:
+					member.comments = ""
 				member.rowOnSheet = index
 				db.session.commit()
 				print("I updated the information for", member.firstName, member.lastName)
@@ -49,11 +61,25 @@ def get_from_sheet():
 					dues = int(sheet.cell(index, 8).value)
 				else:
 					dues = 0
+				if sheet.attendance(index, 9).value:
+					attendance = int(sheet.cell(index, 9).value)
+				else:
+					attendance = 0
+				if sheet.cell(index, 5).value:
+					year = str(sheet.cell(index, 5).value)
+				else:
+					year = ""
+				if sheet.cell(index, 7).value:
+					comments = str(sheet.cell(index, 7).value)
+				else:
+					comments = ""
 				rowOnSheet = index
-				member = Member(eid = eid, firstName = firstName, lastName = lastName, email = email, attendance = attendance, dues = dues, rowOnSheet = rowOnSheet)
+				member = Member(eid = eid, firstName = firstName, lastName = lastName, email = email, attendance = attendance, dues = dues, rowOnSheet = rowOnSheet, year = year, comments = comments)
 				db.session.add(member)
 				print("I added", firstName, lastName)
 				db.session.commit()
+		else:
+			print("There is no one on row", index)
 
 @manager.command
 def reset_attendance():
