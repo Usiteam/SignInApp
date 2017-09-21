@@ -19,7 +19,7 @@ class Member(db.Model):
 	dues = db.Column(db.Integer)
 	atLatestMeeting = db.Column(db.Boolean)
 	rowOnSheet = db.Column(db.Integer)
-	comments = db.Columb(db.String(80))
+	comments = db.Column(db.String(80))
 	year = db.Column(db.String(80))
 
 	@staticmethod
