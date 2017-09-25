@@ -37,8 +37,8 @@ def get_from_sheet():
 					# member.dues = int(sheet.cell(index, 8).value)
 				# else:
 					# member.dues = 0
-				if sheet.cell(index, 9).value:
-					member.attendance = int(sheet.cell(index, 9).value)
+				if sheet.cell(index, 8).value:
+					member.attendance = int(sheet.cell(index, 8).value)
 				else:
 					member.attendance = 0
 				# if sheet.cell(index, 5).value:
@@ -63,8 +63,8 @@ def get_from_sheet():
 				# 	dues = int(sheet.cell(index, 8).value)
 				# else:
 				# 	dues = 0
-				if sheet.cell(index, 9).value:
-					attendance = int(sheet.cell(index, 9).value)
+				if sheet.cell(index, 8).value:
+					attendance = int(sheet.cell(index, 8).value)
 				else:
 					attendance = 0
 				# if sheet.cell(index, 5).value:
