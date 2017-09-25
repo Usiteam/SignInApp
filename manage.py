@@ -187,7 +187,8 @@ def get_info_reports():
 			fullNameRecord = (member.firstName + " " + member.lastName).lower()
 			if fullNameRecord == fullName:
 				foundMatch = True
-				member.dues = int(transactions.cell(trans_index, 2).value)
+				dues = transactions.cell(trans_index, 2).value
+				member.dues = int(dues.split("$")[1])
 				print("I have added", dues, "to", fullName)
 
 		if not foundMatch:
