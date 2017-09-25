@@ -95,6 +95,15 @@ def reset_attendance():
 		db.session.commit()
 
 @manager.command
+def add_dues():
+	eid = str(input("EID: "))
+	member = Member.get_by_eid(eid)
+	if not member is None:
+		dues = int(input("How much dues do you want to reset it to? "))
+		member.dues = dues
+		db.session.commit()
+
+@manager.command
 def get_info_reports():
 	row_index = 2
 	end_index = 300
@@ -200,7 +209,6 @@ def get_dues():
 	print("I have not found matches for the following names: ")
 	for name in transactions_unmatched:
 		print(name)
-	print("Length: ", transactions_unmatched.length)
 
 @manager.command
 def get_info():
