@@ -105,11 +105,11 @@ def add_dues():
 			dues = int(input("How much dues do you want to reset it to? "))
 			member.dues = dues
 			db.session.commit()
-			
+
 		answer = input("Do you want to continue (y/n)? ")
 		if answer == 'y':
 			addDues = True
-		else
+		else:
 			addDues = False
 
 @manager.command
