@@ -174,6 +174,8 @@ def get_info_reports():
 		else:
 			print("There is no one on row", index)
 
+@manager.command
+def get_dues():
 	trans_start_index = 2
 	trans_end_index = 200
 
@@ -188,7 +190,7 @@ def get_info_reports():
 			if fullNameRecord == fullName:
 				foundMatch = True
 				dues = transactions.cell(trans_index, 2).value
-				member.dues = int(dues.split("$")[1])
+				member.dues = int(dues.split("$")[1].split(".")[0])
 				print("I have added", dues, "to", fullName)
 
 		if not foundMatch:
