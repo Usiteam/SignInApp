@@ -57,6 +57,7 @@ def get_from_sheet():
 				firstName = str(sheet.cell(index, 1).value).title()
 				lastName = str(sheet.cell(index, 2).value).title()
 				email = str(sheet.cell(index, 4).value).lower()
+				dues = 0
 				# # attendance = int(sheet.cell(index, 11).value)
 				# if sheet.cell(index, 8).value:
 				# 	dues = int(sheet.cell(index, 8).value)
@@ -75,7 +76,7 @@ def get_from_sheet():
 				# else:
 				# 	comments = ""
 				rowOnSheet = index
-				member = Member(eid = eid, firstName = firstName, lastName = lastName, email = email, attendance = attendance, dues = dues, rowOnSheet = rowOnSheet, year = year, comments = comments)
+				member = Member(eid = eid, firstName = firstName, lastName = lastName, email = email, dues = dues, attendance = attendance, rowOnSheet = rowOnSheet)
 				db.session.add(member)
 				print("I added", firstName, lastName)
 				db.session.commit()
