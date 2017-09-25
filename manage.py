@@ -29,9 +29,9 @@ def get_from_sheet():
 			eid = str(sheet.cell(index, 3).value).lower()
 			member = Member.get_by_eid(eid)
 			if not member is None:
-				member.firstName = str(sheet.cell(index, 1).value).title()
-				member.lastName = str(sheet.cell(index, 2).value).title()
-				member.email = str(sheet.cell(index, 4).value).lower()
+				# member.firstName = str(sheet.cell(index, 1).value).title()
+				# member.lastName = str(sheet.cell(index, 2).value).title()
+				# member.email = str(sheet.cell(index, 4).value).lower()
 				# member.attendance = int(sheet.cell(index, 11).value)
 				# if sheet.cell(index, 8).value:
 					# member.dues = int(sheet.cell(index, 8).value)
@@ -49,23 +49,23 @@ def get_from_sheet():
 					# member.comments = str(sheet.cell(index, 7).value)
 				# else:
 					# member.comments = ""
-				member.rowOnSheet = index
+				# member.rowOnSheet = index
 				db.session.commit()
 				print("I updated the information for", member.firstName, member.lastName)
 			else:
-				# eid = str(sheet.cell(index, 3).value).lower()
-				# firstName = str(sheet.cell(index, 1).value).title()
-				# lastName = str(sheet.cell(index, 2).value).title()
-				# email = str(sheet.cell(index, 4).value).lower()
+				eid = str(sheet.cell(index, 3).value).lower()
+				firstName = str(sheet.cell(index, 1).value).title()
+				lastName = str(sheet.cell(index, 2).value).title()
+				email = str(sheet.cell(index, 4).value).lower()
 				# # attendance = int(sheet.cell(index, 11).value)
 				# if sheet.cell(index, 8).value:
 				# 	dues = int(sheet.cell(index, 8).value)
 				# else:
 				# 	dues = 0
-				# if sheet.attendance(index, 9).value:
-				# 	attendance = int(sheet.cell(index, 9).value)
-				# else:
-				# 	attendance = 0
+				if sheet.attendance(index, 9).value:
+					attendance = int(sheet.cell(index, 9).value)
+				else:
+					attendance = 0
 				# if sheet.cell(index, 5).value:
 				# 	year = str(sheet.cell(index, 5).value)
 				# else:
@@ -74,12 +74,12 @@ def get_from_sheet():
 				# 	comments = str(sheet.cell(index, 7).value)
 				# else:
 				# 	comments = ""
-				# rowOnSheet = index
-				# member = Member(eid = eid, firstName = firstName, lastName = lastName, email = email, attendance = attendance, dues = dues, rowOnSheet = rowOnSheet, year = year, comments = comments)
-				# db.session.add(member)
-				# print("I added", firstName, lastName)
-				# db.session.commit()
-				print("He/she is not in the database.")
+				rowOnSheet = index
+				member = Member(eid = eid, firstName = firstName, lastName = lastName, email = email, attendance = attendance, dues = dues, rowOnSheet = rowOnSheet, year = year, comments = comments)
+				db.session.add(member)
+				print("I added", firstName, lastName)
+				db.session.commit()
+				# print("He/she is not in the database.")
 		else:
 			print("There is no one on row", index)
 
