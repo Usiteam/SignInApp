@@ -48,8 +48,8 @@ def new_user():
 		lastName = str(request.form['last-name'])
 		email = str(request.form['email'])
 		year = str(request.form['year'])
-		comment = "New"
-		member = Member(eid = eid, firstName = firstName, lastName = lastName, email = email, attendance=1, dues=0, atLatestMeeting = True, rowOnSheet = 0, year = year, comment = comment)
+		comments = "New"
+		member = Member(eid = eid, firstName = firstName, lastName = lastName, email = email, attendance=1, dues=0, atLatestMeeting = True, rowOnSheet = 0, year = year, comments = comment)
 		db.session.add(member)
 		db.session.commit()
 		return render_template('dashboard.html', notInSystem = False, allowedIn = True, notAllowedIn = False, missingInformation = False, attendance = member.attendance, dues = member.dues, firstName = member.firstName, lastName = member.lastName, date = date)
