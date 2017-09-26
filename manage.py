@@ -207,10 +207,11 @@ def get_dues():
 			fullNameRecord = (member.firstName + " " + member.lastName).lower()
 			if fullNameRecord == fullName:
 				foundMatch = True
-				dues = transactions.cell(trans_index, 2).value
-				member.dues = int(dues.split("$")[1].split(".")[0])
-				db.session.commit()
-				print("I have added", dues, "to", fullName)
+				if member.dues == 0:
+					dues = transactions.cell(trans_index, 2).value
+					member.dues = int(dues.split("$")[1].split(".")[0])
+					db.session.commit()
+					print("I have added", dues, "to", fullName)
 
 		if not foundMatch:
 			transactions_unmatched.append(fullName)
