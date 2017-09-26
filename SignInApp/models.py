@@ -28,7 +28,7 @@ class Member(db.Model):
 
 	@staticmethod
 	def check_attendance(dues, attendance):
-		if dues == 70:
+		if dues > 45:
 			return True
 		elif dues == 45:
 			return attendance <= num_gms_semester

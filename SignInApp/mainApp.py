@@ -29,7 +29,7 @@ def index():
 			member.atLatestMeeting = True
 			db.session.commit()
 
-			if not member.email or not member.firstName or not member.lastName or not member.year:
+			if not member.email or not member.firstName or not member.lastName:
 				needEmail = not member.email
 				needFirstName = not member.firstName
 				needLastName = not member.lastName
