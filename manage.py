@@ -209,6 +209,7 @@ def get_dues():
 				foundMatch = True
 				dues = transactions.cell(trans_index, 2).value
 				member.dues = int(dues.split("$")[1].split(".")[0])
+				db.session.commit()
 				print("I have added", dues, "to", fullName)
 
 		if not foundMatch:
