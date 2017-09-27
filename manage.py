@@ -246,7 +246,7 @@ def write_to_sheet():
 	row_index = 2
 	end_index = 1000
 
-	new_row_start = 723
+	new_row_start = int(input("What row do you want to start at? "))
 
 	column = int(input("What is the column for attendance? "))
 
