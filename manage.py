@@ -267,11 +267,12 @@ def write_to_sheet():
 					sheet.update_cell(index, 3, member.eid)
 					sheet.update_cell(index, 4, member.email)
 					sheet.update_cell(index, column, "X")
+					member.rowOnSheet = index
 					member.atLatestMeeting = False
+					db.session.commit()
 					print("I added in the info for", member.firstName, member.lastName, "and updated attendance in column", column)
 					break;
-
-		db.session.commit()
+		
 
 if __name__ == '__main__':
 	manager.run()
