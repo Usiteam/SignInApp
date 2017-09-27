@@ -20,6 +20,15 @@ def dropdb():
 		print('Dropped the database.')
 
 @manager.command
+def if_none_attendance():
+	for member in Member.query.all():
+		if member.attendance is None:
+			print("EID: ", member.eid)
+			attendance = int(input("How many meetings have they attended? "))
+			member.attendance = attendance
+			db.session.commit()
+
+@manager.command
 def get_from_sheet():
 	row_index = 2
 	end_index = 725
