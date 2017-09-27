@@ -252,7 +252,7 @@ def write_to_sheet():
 
 	for member in Member.query.filter_by(atLatestMeeting = True):
 		if member.rowOnSheet != 0:
-			print("Row: ", rowOnSheet)
+			print("Row: ", member.rowOnSheet)
 			sheet.update_cell(member.rowOnSheet, column, "X")
 			member.atLatestMeeting = False
 			# if not str(sheet.cell(member.rowOnSheet, 1).value):
