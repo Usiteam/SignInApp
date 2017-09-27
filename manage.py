@@ -204,7 +204,7 @@ def get_info_reports():
 @manager.command
 def get_dues():
 	trans_start_index = 2
-	trans_end_index = 200
+	trans_end_index = int(input("What row do you want to end at? "))
 
 	transactions_unmatched = []
 
