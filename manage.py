@@ -246,6 +246,8 @@ def write_to_sheet():
 	row_index = 2
 	end_index = 1000
 
+	new_row_start = 723
+
 	column = int(input("What is the column for attendance? "))
 
 	for member in Member.query.filter_by(atLatestMeeting = True):
@@ -260,7 +262,7 @@ def write_to_sheet():
 			# 	sheet.update_cell(member.rowOnSheet, 4, member.email)
 			print("I updated attendance in column", column, "for", member.firstName, member.lastName)
 		else:
-			for index in range(row_index, end_index):
+			for index in range(new_row_start, end_index):
 				if not str(sheet.cell(index, 1).value) and not str(sheet.cell(index, 2).value) and not str(sheet.cell(index, 3).value):
 					sheet.update_cell(index, 1, member.firstName)
 					sheet.update_cell(index, 2, member.lastName)
