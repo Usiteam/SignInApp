@@ -252,6 +252,7 @@ def write_to_sheet():
 
 	for member in Member.query.filter_by(atLatestMeeting = True):
 		if member.rowOnSheet != 0:
+			print("Row: ", rowOnSheet)
 			sheet.update_cell(member.rowOnSheet, column, "X")
 			member.atLatestMeeting = False
 			# if not str(sheet.cell(member.rowOnSheet, 1).value):
@@ -264,6 +265,7 @@ def write_to_sheet():
 		else:
 			for index in range(new_row_start, end_index):
 				if not str(sheet.cell(index, 1).value) and not str(sheet.cell(index, 2).value) and not str(sheet.cell(index, 3).value):
+					print("Row: ", index)
 					sheet.update_cell(index, 1, member.firstName)
 					sheet.update_cell(index, 2, member.lastName)
 					sheet.update_cell(index, 3, member.eid)
