@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% from "form_macros.html" import render_field %}
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>USIT Sign-In</title>
+		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    	<link rel="icon" href="http://static1.squarespace.com/static/55329952e4b07fb5e0470317/t/59b5bebb8419c20a25da60fc/1505087726265/?format=1500w">
+
+        <link rel="stylesheet" href="../static/css/style.css">
+        <link rel="stylesheet" href="../static/css/main.css">
+        <link rel="stylesheet" href="../static/css/normalize.css">
+
+	</head>
+
+	<body>
+		<div class="usit-icon">
+			<img src="https://static1.squarespace.com/static/55329952e4b07fb5e0470317/t/59b5cf333e00be04abb4de5f/1505087289666/?format=1000w" width="250px" height="250px">
+		</div>
+
+		<div class="eid-prompt">
+			<p>Please enter your UT EID:</p>
+		</div>
+
+		<form action="/" method="post" class="eid-inputs">
+			<input class="eid-input" type="text" name="eid"><br>
+			<input class="eid-submit" type="submit" name="enter-eid" value="Check In">
+		</form>
+
+	</body>
+</html>
