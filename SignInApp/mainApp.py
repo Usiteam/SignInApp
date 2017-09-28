@@ -13,9 +13,6 @@ from itsdangerous import URLSafeTimedSerializer
 from sqlalchemy import func 
 import ntpath
 
-#This is a test comment
-#This is another test comment
-
 basedir = os.path.abspath(os.path.dirname(__file__))
 date = time.strftime("%m/%d/%Y")
 
