@@ -32,7 +32,6 @@ def if_none_attendance():
 def print_none_fields():
 	for member in Member.query.all():
 		attendanceNone = member.attendance is None
-		print(attendanceNone, ", ", member.attendance is None)
 		eidNone = member.eid is None
 		firstNameNone = member.firstName is None
 		lastNameNone = member.lastName is None
@@ -46,6 +45,8 @@ def print_none_fields():
 		print("Email None: " + emailNone)
 		print("Dues None: " + duesNone)
 		print("EID None: " + eidNone)
+	else:
+		print(member.firstName + member.lastName + " should not break the database.")
 
 
 @manager.command
