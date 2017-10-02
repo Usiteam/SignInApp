@@ -29,6 +29,25 @@ def if_none_attendance():
 			db.session.commit()
 
 @manager.command
+def print_none_fields():
+	for member in Member.query.all():
+		attendanceNone = member.attendance is None
+		eidNone = member.eid is None
+		firstNameNone = member.firstName is None
+		lastNameNone = member.lastName is None
+		emailNone = member.email is None
+		duesNone = member.dues is None
+
+	if attendanceNone or eidNone or firstNameNone or lastNameNone or emailNone or duesNone:
+		print("Name: " + member.firstName + member.lastName)
+		print("First Name None: " + firstNameNone)
+		print("Last Name None: " + lastNameNone)
+		print("Email None: " + emailNone)
+		print("Dues None: " + duesNone)
+		print("EID None: " + eidNone)
+
+
+@manager.command
 def get_from_sheet():
 	row_index = 2
 	end_index = 725
