@@ -29,6 +29,12 @@ def if_none_attendance():
 			db.session.commit()
 
 @manager.command
+def print_emails():
+	for member in Member.query.all():
+		if member.attendance > 0:
+			print(member.email)
+
+@manager.command
 def print_none_fields():
 	for member in Member.query.all():
 		attendanceNone = member.attendance is None
