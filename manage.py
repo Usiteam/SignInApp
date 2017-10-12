@@ -57,8 +57,8 @@ def print_none_fields():
 
 @manager.command
 def get_from_sheet():
-	row_index = 2
-	end_index = 725
+	row_index = int(input("What is the starting row? "))
+	end_index = int(input("What is the ending row? "))
 
 	for index in range(row_index, end_index):
 		if str(sheet.cell(index, 3).value):
