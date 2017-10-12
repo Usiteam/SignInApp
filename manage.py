@@ -65,14 +65,15 @@ def get_from_sheet():
 			eid = str(sheet.cell(index, 3).value).lower()
 			member = Member.get_by_eid(eid)
 			if not member is None:
-				# member.firstName = str(sheet.cell(index, 1).value).title()
-				# member.lastName = str(sheet.cell(index, 2).value).title()
-				# member.email = str(sheet.cell(index, 4).value).lower()
+				member.firstName = str(sheet.cell(index, 1).value).title()
+				member.lastName = str(sheet.cell(index, 2).value).title()
+				member.email = str(sheet.cell(index, 4).value).lower()
 				# member.attendance = int(sheet.cell(index, 11).value)
 				# if sheet.cell(index, 8).value:
 					# member.dues = int(sheet.cell(index, 8).value)
 				# else:
 					# member.dues = 0
+				member.dues = 0
 				if sheet.cell(index, 8).value:
 					member.attendance = int(sheet.cell(index, 8).value)
 				else:
@@ -85,7 +86,7 @@ def get_from_sheet():
 					# member.comments = str(sheet.cell(index, 7).value)
 				# else:
 					# member.comments = ""
-				# member.rowOnSheet = index
+				member.rowOnSheet = index
 				db.session.commit()
 				print("I updated the information for", member.firstName, member.lastName)
 			else:
