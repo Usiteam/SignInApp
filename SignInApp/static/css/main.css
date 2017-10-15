@@ -78,6 +78,7 @@ input[type="text"]:focus {
 	align-items: center;
 	color: white;
 	font-size: 18px;
+	padding-bottom: 45px;
 }
 
 .attendance-stat {
