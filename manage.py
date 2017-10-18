@@ -29,6 +29,16 @@ def if_none_attendance():
 			db.session.commit()
 
 @manager.command
+def get_attendance():
+	members = Member.query.filter_by(atLatestMeeting = True)
+	count = 0
+
+	for member in members:
+		count += 1
+
+	print("Numer of members: " + count)
+
+@manager.command
 def print_emails():
 	for member in Member.query.all():
 		if member.attendance > 0:
