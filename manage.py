@@ -30,7 +30,7 @@ def if_none_attendance():
 
 @manager.command
 def get_attendance():
-	members = Member.query.filter_by(atLatestMeeting = True)
+	members = Member.query.filter_by(atLatestMeeting = True).all()
 	count = 0
 
 	for member in members:
