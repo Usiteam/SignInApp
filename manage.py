@@ -36,7 +36,7 @@ def get_attendance():
 	for member in members:
 		count += 1
 
-	print("Numer of members: " + count)
+	print("Numer of members: " + str(count))
 
 @manager.command
 def print_emails():
