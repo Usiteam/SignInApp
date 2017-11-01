@@ -67,7 +67,7 @@ def print_none_fields():
 
 @manager.command
 def print_zero_dues():
-	for user in User.query.all():
+	for user in Member.query.all():
 		if user.dues == 0:
 			print("Name: " + user.firstName + " " + user.lastName)
 
