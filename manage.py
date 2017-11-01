@@ -66,6 +66,12 @@ def print_none_fields():
 
 
 @manager.command
+def print_zero_dues():
+	for user in User.query.all():
+		if user.dues == 0:
+			print("Name: " + user.firstName + " " + user.lastName)
+
+@manager.command
 def get_from_sheet():
 	row_index = int(input("What is the starting row? "))
 	end_index = int(input("What is the ending row? "))
@@ -83,7 +89,7 @@ def get_from_sheet():
 					# member.dues = int(sheet.cell(index, 8).value)
 				# else:
 					# member.dues = 0
-				member.dues = 0
+				# member.dues = 0
 				if sheet.cell(index, 8).value:
 					member.attendance = int(sheet.cell(index, 8).value)
 				else:
