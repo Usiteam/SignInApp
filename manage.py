@@ -299,13 +299,14 @@ def write_to_sheet():
 			print("Row: ", member.rowOnSheet)
 			sheet.update_cell(member.rowOnSheet, column, "X")
 			member.atLatestMeeting = False
-			# if not str(sheet.cell(member.rowOnSheet, 1).value):
-			# 	sheet.update_cell(member.rowOnSheet, 1, member.firstName)
-			# if not str(sheet.cell(member.rowOnSheet, 2).value):
-			# 	sheet.update_cell(member.rowOnSheet, 2, member.lastName)
-			# if not str(sheet.cell(member.rowOnSheet, 4).value):
-			# 	sheet.update_cell(member.rowOnSheet, 4, member.email)
+			if not str(sheet.cell(member.rowOnSheet, 1).value):
+				sheet.update_cell(member.rowOnSheet, 1, member.firstName)
+			if not str(sheet.cell(member.rowOnSheet, 2).value):
+				sheet.update_cell(member.rowOnSheet, 2, member.lastName)
+			if not str(sheet.cell(member.rowOnSheet, 4).value):
+				sheet.update_cell(member.rowOnSheet, 4, member.email)
 			print("I updated attendance in column", column, "for", member.firstName, member.lastName)
+			db.session.commit()
 		else:
 			for index in range(new_row_start, end_index):
 				if not str(sheet.cell(index, 1).value) and not str(sheet.cell(index, 2).value) and not str(sheet.cell(index, 3).value):
