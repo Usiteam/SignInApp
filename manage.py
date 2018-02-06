@@ -322,6 +322,7 @@ def write_to_sheet():
 					print("I added in the info for", member.firstName, member.lastName, "and updated attendance in column", column)
 					break;
 
+@manager.command
 def write_attendance():
 	row_index = 2
 	end_index = 1000
