@@ -321,7 +321,17 @@ def write_to_sheet():
 					db.session.commit()
 					print("I added in the info for", member.firstName, member.lastName, "and updated attendance in column", column)
 					break;
-		
+
+def write_attendance():
+	row_index = 2
+	end_index = 1000
+
+	attendance_column = 23
+
+	for member in Member.query.all():
+		if member.rowOnSheet is not None and member.rowOnSheet != 0 and member.attendance is not None and member.attendance != 0:
+			sheet.update_cell(member.rowOnSheet, attendance_column, member.attendance)
+			print("I added attendance data for " + member.firstName + " " + member.lastName + "." )
 
 if __name__ == '__main__':
 	manager.run()
