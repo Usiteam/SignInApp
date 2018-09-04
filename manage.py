@@ -29,7 +29,7 @@ def new_year_reset():
 def if_none_attendance():
 	for member in Member.query.all():
 		if member.attendance is None:
-			print("EID: ", member.eid)
+			print("EID: ", member.eid) 
 			attendance = int(input("How many meetings have they attended? "))
 			member.attendance = attendance
 			db.session.commit()
