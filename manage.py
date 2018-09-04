@@ -22,8 +22,8 @@ def dropdb():
 @manager.command
 def new_year_reset():
 	for member in Member.query.all():
-		member.dues == 0
-		member.attendance == 0
+		member.dues = 0
+		member.attendance = 0
 		print('I have reset the dues and attendance for all members in the database')
 
 @manager.command
