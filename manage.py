@@ -19,6 +19,7 @@ def dropdb():
 		db.drop_all()
 		print('Dropped the database.')
 
+@manager.command
 def new_year_reset():
 	for member in Member.query.all():
 		member.dues == 0
