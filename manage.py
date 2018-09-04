@@ -19,6 +19,12 @@ def dropdb():
 		db.drop_all()
 		print('Dropped the database.')
 
+def new_year_reset():
+	for member in Member.query.all():
+		member.dues == 0
+		member.attendance == 0
+		print('I have reset the dues and attendance for all members in the database')
+
 @manager.command
 def if_none_attendance():
 	for member in Member.query.all():
