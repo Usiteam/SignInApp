@@ -336,7 +336,7 @@ def write_attendance():
 	row_index = 2
 	end_index = 1000
 
-	attendance_column = 23
+	attendance_column = 8
 
 	for member in Member.query.all():
 		if member.rowOnSheet is not None and member.rowOnSheet != 0 and member.attendance is not None and member.attendance != 0:
