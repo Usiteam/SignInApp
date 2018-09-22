@@ -20,15 +20,6 @@ def dropdb():
 		print('Dropped the database.')
 
 @manager.command
-def new_year_reset():
-	for member in Member.query.all():
-		member.attendance = 0
-		member.atLatestMeeting = False
-		member.dues = 0
-		db.session.commit()
-	print('I have reset the dues and attendance for all members in the database')
-
-@manager.command
 def if_none_attendance():
 	for member in Member.query.all():
 		if member.attendance is None:
@@ -255,38 +246,52 @@ def get_info_reports():
 			print("There is no one on row", index)
 
 @manager.command
+def get_eids():
+	for member in Member.query.all():
+		print(member.eid)
+
+@manager.command
+def print_eids_from_sheet():
+	trans_start_index = int(input("What row do you want to start at? "))
+	trans_end_index = int(input("What row do you want to end at? "))
+
+	transactions_unmatched = []
+
+	for trans_index in range(trans_start_index, trans_end_index):
+		eid = str(transactions.cell(trans_index, 4).value).lower()
+		print(eid)
+
+@manager.command
 def get_dues():
-    eid_column_index = 4
-    dues_column_index = 9
+	trans_start_index = int(input("What row do you want to start at? "))
+	trans_end_index = int(input("What row do you want to end at? "))
 
-    trans_start_index = int(input("What row do you want to start at? "))
-    trans_end_index = int(input("What row do you want to end at? "))
+	transactions_unmatched = []
 
-    transactions_unmatched = []
+	for trans_index in range(trans_start_index, trans_end_index):
+		eid = str(transactions.cell(trans_index, 4).value).lower()
+		foundMatch = False
 
-    for trans_index in range(trans_start_index, trans_end_index):
-        eid = str(transactions.cell(trans_index, eid_column_index).value).lower()
-        foundMatch = False
+		for member in Member.query.all():
+			member_eid = member.eid.lower()
+			if member_eid == eid:
+				foundMatch = True
+				if member.dues == 0:
+					dues = transactions.cell(trans_index, 9).value
+					if(dues == "Yes, I paid for the whole academic year."):
+						member.dues = 70
+					elif(dues == "Yes, I paid for a semester."):
+						member.dues = 45
+					db.session.commit()
+					print("I have added", dues, "to", fullName)
 
-        for member in Member.query.all():
-            if member.eid.lower() == eid:
-                foundMatch = True
-                if member.dues == 0:
-                    dues = transactions.cell(trans_index, dues_column_index)
-                    if(dues == "Yes, I paid for the whole academic year."):
-                        member.dues = 70
-                    elif (dues == "Yes, I paid for a semester."):
-                        member.dues = 45
-                    db.session.commit()
-                    print("I have added", dues, "to", eid)
-
-        if not foundMatch:
-            transactions_unmatched.append(eid)
+		if not foundMatch:
+			transactions_unmatched.append(eid)
 
 
-    print("I have not found matches for the following EIDS: ")
-    for person in transactions_unmatched:
-        print(person)
+	print("I have not found matches for the following EIDs: ")
+	for person in transactions_unmatched:
+		print(person)
 
 @manager.command
 def get_info():
