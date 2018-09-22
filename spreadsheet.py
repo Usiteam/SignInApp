@@ -6,3 +6,4 @@ creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', s
 client = gspread.authorize(creds)
 
 sheet = client.open("Membership Sign-in").get_worksheet(0)
+transactions = client.open("USIT Membership Payment Confirmation 2018-2019").get_worksheet(0)

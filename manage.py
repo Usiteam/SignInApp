@@ -45,7 +45,7 @@ def get_attendance():
 	for member in members:
 		count += 1
 
-	print("Numer of members: " + str(count))
+	print("Number of members: " + str(count))
 
 @manager.command
 def print_emails():
@@ -256,32 +256,37 @@ def get_info_reports():
 
 @manager.command
 def get_dues():
-	trans_start_index = int(input("What row do you want to start at? "))
-	trans_end_index = int(input("What row do you want to end at? "))
+    eid_column_index = 4
+    dues_column_index = 9
 
-	transactions_unmatched = []
+    trans_start_index = int(input("What row do you want to start at? "))
+    trans_end_index = int(input("What row do you want to end at? "))
 
-	for trans_index in range(trans_start_index, trans_end_index):
-		fullName = str(transactions.cell(trans_index, 4).value).lower()
-		foundMatch = False
+    transactions_unmatched = []
 
-		for member in Member.query.all():
-			fullNameRecord = (member.firstName + " " + member.lastName).lower()
-			if fullNameRecord == fullName:
-				foundMatch = True
-				if member.dues == 0:
-					dues = transactions.cell(trans_index, 2).value
-					member.dues = int(dues.split("$")[1].split(".")[0])
-					db.session.commit()
-					print("I have added", dues, "to", fullName)
+    for trans_index in range(trans_start_index, trans_end_index):
+        eid = str(transactions.cell(trans_index, eid_column_index).value).lower()
+        foundMatch = False
 
-		if not foundMatch:
-			transactions_unmatched.append(fullName)
+        for member in User.query.all():
+            if member.eid.lower() == eid:
+                foundMatch = True
+                if member.dues == 0:
+                    dues = transactions.cell(trans_index, dues_column_index)
+                    if(dues == "Yes, I paid for the whole academic year."):
+                        member.dues = 70
+                    elif (dues == "Yes, I paid for a semester."):
+                        member.dues = 45
+                    db.session.commit()
+                    print("I have added", dues, "to", eid)
+
+        if not foundMatch:
+            transactions_unmatched.append(eid)
 
 
-	print("I have not found matches for the following names: ")
-	for name in transactions_unmatched:
-		print(name)
+    print("I have not found matches for the following EIDS: ")
+    for person in transactions_unmatched:
+        print(person)
 
 @manager.command
 def get_info():
