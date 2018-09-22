@@ -283,7 +283,7 @@ def get_dues():
 					elif(dues == "Yes, I paid for a semester."):
 						member.dues = 45
 					db.session.commit()
-					print("I have added", dues, "to", fullName)
+					print("I have added", dues, "to", member.Name)
 
 		if not foundMatch:
 			transactions_unmatched.append(eid)
