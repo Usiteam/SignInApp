@@ -268,7 +268,7 @@ def get_dues():
         eid = str(transactions.cell(trans_index, eid_column_index).value).lower()
         foundMatch = False
 
-        for member in User.query.all():
+        for member in Member.query.all():
             if member.eid.lower() == eid:
                 foundMatch = True
                 if member.dues == 0:
