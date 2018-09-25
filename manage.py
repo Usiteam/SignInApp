@@ -261,8 +261,9 @@ def print_eids_from_sheet():
 		eid = str(transactions.cell(trans_index, 4).value).lower()
 		print(eid)
 
+
 @manager.command
-def get_dues():
+def get_dues_from_sheet():
 	trans_start_index = int(input("What row do you want to start at? "))
 	trans_end_index = int(input("What row do you want to end at? "))
 
