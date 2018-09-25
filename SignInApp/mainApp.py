@@ -24,7 +24,7 @@ def index():
 
 		if member is None:
 			return render_template('dashboard.html', missingInformation = False, notInSystem = True, allowedIn = False, notAllowedIn = False, eid = eid)
-		if member is not None and member.attendance = None:
+		if member is not None and member.attendance is None:
 			member.attendance = 0
 		elif member is not None and member.check_attendance(member.dues, member.attendance + 1):
 			member.attendance += 1
