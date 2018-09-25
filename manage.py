@@ -273,6 +273,7 @@ def get_dues_from_sheet():
 		eid = str(transactions.cell(trans_index, 4).value).lower()
 		foundMatch = False
 
+		#gets dues based on new transactions sheet
 		for member in Member.query.all():
 			member_eid = member.eid.lower()
 			if member_eid == eid:
