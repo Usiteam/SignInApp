@@ -8,7 +8,7 @@ Flask-SQLAlchemy==2.2
 Flask-WTF==0.14.2
 gspread==0.6.2
 gunicorn==19.7.1
-Jinja2==2.8
+Jinja2==2.11.3
 oauth2client==4.1.2
 openpyxl==2.4.7
 psycopg2==2.7.1
