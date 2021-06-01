@@ -17,5 +17,5 @@ pytz==2013.7
 requests==2.16.0
 simplejson==3.10.0
 SQLAlchemy==1.1.10
-urllib3==1.21.1
+urllib3==1.26.5
 google-api-python-client==1.6.4
